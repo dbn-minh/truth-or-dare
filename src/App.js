@@ -7,6 +7,8 @@ function App() {
   const [dareInput, setDareInput] = useState("");
   const [truthQuestions, setTruthQuestions] = useState([]);
   const [dareQuestions, setDareQuestions] = useState([]);
+  const [usedTruthQuestions, setUsedTruthQuestions] = useState([]);
+  const [usedDareQuestions, setUsedDareQuestions] = useState([]);
   const [playerInput, setPlayerInput] = useState("");
   const [players, setPlayers] = useState([]);
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
@@ -31,6 +33,8 @@ function App() {
     setTruthQuestions(truths);
     setDareQuestions(dares);
     setPlayers(playerList);
+    setUsedTruthQuestions([]);
+    setUsedDareQuestions([]);
     setStage(2); // Move to the Play stage
   };
 
@@ -40,11 +44,35 @@ function App() {
 
     setTimeout(() => {
       if (type === "truth" && truthQuestions.length > 0) {
-        const randomTruth = truthQuestions[Math.floor(Math.random() * truthQuestions.length)];
-        setCurrentQuestion(`Truth: ${randomTruth}`);
+        // Filter unused questions
+        const unusedTruths = truthQuestions.filter(
+          (q) => !usedTruthQuestions.includes(q)
+        );
+
+        if (unusedTruths.length === 0) {
+          alert("All Truth questions have been used! Resetting questions.");
+          setUsedTruthQuestions([]);
+        } else {
+          const randomTruth =
+            unusedTruths[Math.floor(Math.random() * unusedTruths.length)];
+          setCurrentQuestion(`Truth: ${randomTruth}`);
+          setUsedTruthQuestions((prev) => [...prev, randomTruth]);
+        }
       } else if (type === "dare" && dareQuestions.length > 0) {
-        const randomDare = dareQuestions[Math.floor(Math.random() * dareQuestions.length)];
-        setCurrentQuestion(`Dare: ${randomDare}`);
+        // Filter unused questions
+        const unusedDares = dareQuestions.filter(
+          (q) => !usedDareQuestions.includes(q)
+        );
+
+        if (unusedDares.length === 0) {
+          alert("All Dare questions have been used! Resetting questions.");
+          setUsedDareQuestions([]);
+        } else {
+          const randomDare =
+            unusedDares[Math.floor(Math.random() * unusedDares.length)];
+          setCurrentQuestion(`Dare: ${randomDare}`);
+          setUsedDareQuestions((prev) => [...prev, randomDare]);
+        }
       } else {
         setCurrentQuestion("No questions available for this category.");
       }
