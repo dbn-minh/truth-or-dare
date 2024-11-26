@@ -1,0 +1,159 @@
+/* App.css */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #fef6e4;
+}
+
+.app-container {
+  padding: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #ff8c94;
+  margin-bottom: 20px;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.textarea {
+  padding: 10px;
+  border: 2px solid #ffe3e3;
+  border-radius: 8px;
+  font-size: 1rem;
+  resize: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.submit-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  color: white;
+  background: #ff8c94;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submit-button:hover {
+  background: #ff6f81;
+}
+
+.current-player {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #6b5b95;
+  margin: 10px 0;
+}
+
+.card {
+  width: 100%;
+  max-width: 300px;
+  height: 200px;
+  margin: 20px auto;
+  perspective: 1000px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 1s ease-in-out; /* Adjusted animation duration for smoother flip */
+  transform-style: preserve-3d;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.card-front {
+  background-color: #ffccbc;
+}
+
+.card-back {
+  background-color: #ffab91;
+  transform: rotateY(180deg);
+}
+
+
+.card-front {
+  background-color: #ffccbc;
+}
+
+.card-back {
+  background-color: #ffab91;
+  transform: rotateY(180deg);
+}
+
+.play-section {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.option-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  background: #ffccbc;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.option-button:hover {
+  background: #ffab91;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .textarea {
+    font-size: 0.9rem;
+  }
+
+  .submit-button, .option-button {
+    font-size: 0.9rem;
+  }
+
+  .card {
+    max-width: 250px;
+    height: 180px;
+  }
+}
